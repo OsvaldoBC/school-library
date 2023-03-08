@@ -6,6 +6,6 @@ require './person'
 class TrimmerDecorator < Decorator
   def correct_name
     super()
-    @nameable.length > 10 ? @nameable[0..9] : @nameable
+    @nameable.correct_name.length > 10 ? @nameable.correct_name[0..9] : @nameable.correct_name
   end
 end

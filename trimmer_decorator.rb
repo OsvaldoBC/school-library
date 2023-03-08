@@ -8,3 +8,4 @@ class TrimmerDecorator < Decorator
     super()
     @nameable.length > 10 ? @nameable[0..9] : @nameable
   end
+end

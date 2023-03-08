@@ -18,6 +18,7 @@ class Student < Person
 
     @classroom = classroom
     return if classroom.student_list.include? self
+
     classroom.student_list.push(self)
   end
 end

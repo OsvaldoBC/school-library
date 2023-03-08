@@ -5,6 +5,3 @@ class Nameable
     end
   end
   
-  name = Nameable.new
-  puts name.correct_name
-  

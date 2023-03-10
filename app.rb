@@ -29,7 +29,7 @@ class App
   end
 
   def run
-    option=-1
+    option = -1
     until option == 7
       menu
       option = gets.chomp.to_i
@@ -91,18 +91,48 @@ class App
     @people.push(person)
   end
 
-# def create_book
-def create_book
-  print 'Title: '
-  title = gets.chomp
-  print 'Author: '
-  author = gets.chomp
-  book = Book.new(title, author)
-  @books.push(book)
-  puts 'Book created successfully'
-  run
-end
+  # def create_book
+  def create_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = Book.new(title, author)
+    @books.push(book)
+    puts 'Book created successfully'
+    run
+  end
+
+  def list_books
+    @books.each_with_index { |book, index| puts "#{index}) Title: '#{book.title}', Author: #{book.author}" }
+    run
+  end
+
+  # def list_people
+  def list_people
+    @people.each { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    run
+  end
+
+  def create_rental
+    puts 'Select a book from the following list by number'
+    @books.each_with_index { |book, index| puts "#{index}) Title: '#{book.title}', Author: #{book.author}" }
+    book_index = gets.chomp.to_i
+    puts ''
+
+    puts 'Select a person from the following list by number (not id)'
+    @people.each_with_index do |person, index|
+      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    end
+    person_index = gets.chomp.to_i
+    puts ''
+
+    print 'Date: '
+    date = gets.chomp
+    @rentals.push(Rental.new(date, @books[book_index], @people[person_index]))
+    puts 'Rental created successfully'
+    run
+  end
 
   private :create_student, :create_teacher
-
 end

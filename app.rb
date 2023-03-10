@@ -1,5 +1,11 @@
 # class app
 class App
+  def initialize
+    @books = []
+    @people = []
+    @rentals = []
+  end
+
   def run
     menuoption = gets.chomp.to_i
     case option
@@ -17,7 +23,6 @@ class App
       list_rentals_by_person_id
     when 7
       puts 'Thank you for using this app!'
-      return
     else
       puts 'That is not a valid option'
     end

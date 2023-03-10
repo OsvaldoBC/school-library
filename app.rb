@@ -9,8 +9,7 @@ class App
     @rentals = []
   end
 
-  def run
-    menuoption = gets.chomp.to_i
+  def selectoption(option)
     case option
     when 1
       list_books
@@ -24,11 +23,19 @@ class App
       create_rental
     when 6
       list_rentals_by_person_id
-    when 7
-      puts 'Thank you for using this app!'
     else
       puts 'That is not a valid option'
     end
+  end
+
+  def run
+    option=-1
+    until option == 7
+      menu
+      option = gets.chomp.to_i
+      selectoption(option) unless option == 7
+    end
+    puts 'Thank you for using this app'
   end
 
   def menu
@@ -69,7 +76,8 @@ class App
     name = gets.chomp
     print 'Has parent permission? [Y/N]: '
     permission = gets.chomp.downcase == 'y'
-    person = Student.new(name, age, parent_permission: permission)
+    person = Student.new(name, age, '', parent_permission: permission)
+    @people.push(person)
   end
 
   def create_teacher
@@ -80,7 +88,21 @@ class App
     print 'Specialization: '
     specialization = gets.chomp
     person = Teacher.new(name, age, specialization)
+    @people.push(person)
   end
 
+# def create_book
+def create_book
+  print 'Title: '
+  title = gets.chomp
+  print 'Author: '
+  author = gets.chomp
+  book = Book.new(title, author)
+  @books.push(book)
+  puts 'Book created successfully'
+  run
+end
+
   private :create_student, :create_teacher
+
 end

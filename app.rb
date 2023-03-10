@@ -1,3 +1,6 @@
+require './student'
+require './teacher'
+
 # class app
 class App
   def initialize
@@ -38,4 +41,46 @@ class App
     puts '6 - List all rentals for a given person id'
     puts '7 - Exit'
   end
+
+  def create_person
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
+    option = gets.chomp.to_i
+
+    case option
+    when 1
+      person = create_student
+    when 2
+      person = create_teacher
+    else
+      puts 'That is not a valid input'
+      return
+    end
+
+    @people.push(person)
+    puts 'Person created successfully'
+    puts ''
+    run
+  end
+
+  def create_student
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp
+    print 'Has parent permission? [Y/N]: '
+    permission = gets.chomp.downcase == 'y'
+    person = Student.new(name, age, parent_permission: permission)
+  end
+
+  def create_teacher
+    print 'Age: '
+    age = gets.chomp.to_i
+    print 'Name: '
+    name = gets.chomp
+    print 'Specialization: '
+    specialization = gets.chomp
+    person = Teacher.new(name, age, specialization)
+  end
+
+  private :create_student, :create_teacher
 end

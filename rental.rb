@@ -1,6 +1,7 @@
 require './person'
 require './book'
 
+# class rental
 class Rental
   attr_accessor :date, :book, :person
 

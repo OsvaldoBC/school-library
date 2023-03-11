@@ -1,6 +1,5 @@
 require './decorator'
 
-
 # class trimmer_decorator
 class TrimmerDecorator < Decorator
   def correct_name

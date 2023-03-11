@@ -1,6 +1,5 @@
 require './decorator'
-require './capitalize_decorator'
-require './person'
+
 
 # class trimmer_decorator
 class TrimmerDecorator < Decorator
